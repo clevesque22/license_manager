@@ -15,7 +15,7 @@
 -include_lib("kernel/include/file.hrl").
 
 -define(SERVER, ?MODULE).
--define(LICENSE_FILE_LOCATION, "/Users/prunninger/projects/spikes/license_manager").
+-define(LICENSE_FILE_LOCATION, ".").
 
 -record(state, {parent, polling_interval=10000, license_files=[]}).
 
