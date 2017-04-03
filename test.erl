@@ -54,6 +54,7 @@ handle_call(_Request, _From, State) ->
     {reply, Reply, State}.
 
 handle_cast({request, Id, no_such_category}, #state{status_bar=StatusBar}=State) ->
+    erlang:send_after(5000, self(), {retry_request, Id}),
     {noreply, State#state{status_bar=update_bar(StatusBar, Id, "A")}};
 handle_cast({request, Id, already_granted}, #state{status_bar=StatusBar}=State) ->
     {noreply, State#state{status_bar=update_bar(StatusBar, Id, "B")}};

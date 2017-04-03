@@ -127,8 +127,7 @@ update_license_info(NewLicenseTotals, #state{categories=CurrentCategories, paren
     UpdatedCategories = lists:map(
                           fun({Name, NewMax}) ->
                                   update_category(lists:keyfind(Name, #category.name, CurrentCategories), Name, NewMax)
-                          end,
-                          NewLicenseTotals),
+                          end, NewLicenseTotals),
     DisabledCategories = lists:filtermap(
                            fun(#category{name=Name}=Category) ->
                                    disable_category(lists:keyfind(Name, 1, NewLicenseTotals), Category)
