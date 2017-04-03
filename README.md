@@ -9,16 +9,16 @@ test:go().
 
 10 is the number of voice requests to make, and can be adjusted for each test. Progress will be displayed by a series of strings. The characters in the strings have these meanings:
 
-  Character | Meaning
-  ---+---
-  `.` | Nothing has happened yet with this request.
-  `+` | Request has been granted.
-  `x` | Request has been denied. Retry will occur in 750 ms.
-  `-` | License has been released.
-  `A` | Requested category does not exist.
-  `B` | Request was already granted.
-  `C` | Release failed because category does not exist.
-  `D` | Release "failed" because GUID is not using a license.
+Character | Meaning
+---+---
+`.` | Nothing has happened yet with this request.
+`+` | Request has been granted.
+`x` | Request has been denied. Retry will occur in 750 ms.
+`-` | License has been released.
+`A` | Requested category does not exist.
+`B` | Request was already granted.
+`C` | Release failed because category does not exist.
+`D` | Release "failed" because GUID is not using a license.
 
   * A can be made to happen if the license file(s) do not contain counts for the voice category.
   * B, C, and D probably won't happen at all in the testing.
@@ -32,8 +32,8 @@ While `test:go()` is running, you can call lm directly, via the `lm:request/2` a
 * gen_server
 * start_links `lm` to maintain a communication link to it.
 * API
-  * start up with # of requests to make `start_link(Count)` _default: 20_
-  * start testing `go()`
+    * start up with # of requests to make `start_link(Count)` _default: 20_
+    * start testing `go()`
 * Reports progress of test, visualizing what happens because of the random timing that the test uses.
 
 ## lm
@@ -42,25 +42,25 @@ While `test:go()` is running, you can call lm directly, via the `lm:request/2` a
 * started by `test`
 * start_links `license_poller` to maintain a communication link to it.
 * API
-  * request licenses `request(Category, Giud)`
-  * release licenses `release(Category, Guid)`
-  * get current state `state()`
+    * request licenses `request(Category, Giud)`
+    * release licenses `release(Category, Guid)`
+    * get current state `state()`
 * Messages Handled and Responses
-   * `state`
-   * `{request, Category, Guid}`
-      * `no_such_category`
-      * `granted`
-      * `already_granted`
-      * `not_available`
-   * `{release, Category, Guid}`
-      * `no_such_category`
-      * `released`
-      * `guid_is_not_using_license`
-   * `{expire,  Cagetory, Guid}`
-   * `{update_license_info, LicenseFiles}`
+    * `state`
+    * `{request, Category, Guid}`
+        * `no_such_category`
+        * `granted`
+        * `already_granted`
+        * `not_available`
+    * `{release, Category, Guid}`
+        * `no_such_category`
+        * `released`
+        * `guid_is_not_using_license`
+    * `{expire,  Cagetory, Guid}`
+    * `{update_license_info, LicenseFiles}`
 * Reading License Files
-  * All license new license files are read, and totals by category are summed up.
-  * New max licenses available are stored in the state.
+    * All license new license files are read, and totals by category are summed up.
+    * New max licenses available are stored in the state.
 
   Responses are also cast back to the parent gen_server (test). This is only for visualizing what's happening.
 
@@ -70,9 +70,9 @@ While `test:go()` is running, you can call lm directly, via the `lm:request/2` a
 * started by `lm`
 * watches a folder for `*.lic` files
 * when a change in files occurs...
-  * new file
-  * deleted file
-  * modified file/timestamp
+    * new file
+    * deleted file
+    * modified file/timestamp
 
   sends `{update_license_info, NewFiles}` to its parent (lm).
 
