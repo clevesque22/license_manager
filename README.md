@@ -59,7 +59,7 @@ While `test:go()` is running, you can call lm directly, via the `lm:request/2` a
     * `{expire,  Cagetory, Guid}`
     * `{update_license_info, LicenseFiles}`
 * Reading License Files
-    * All license new license files are read, and totals by category are summed up.
+    * All license files are read, and totals by category are summed up.
     * New max licenses available are stored in the state.
 
   Responses are also cast back to the parent gen_server (test). This is only for visualizing what's happening.
