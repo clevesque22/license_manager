@@ -10,7 +10,7 @@ test:go().
 10 is the number of voice requests to make, and can be adjusted for each test. Progress will be displayed by a series of strings. The characters in the strings have these meanings:
 
 Character | Meaning
----+---
+---|---
 `.` | Nothing has happened yet with this request.
 `+` | Request has been granted.
 `x` | Request has been denied. Retry will occur in 750 ms.
